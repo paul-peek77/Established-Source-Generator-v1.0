@@ -1,6 +1,7 @@
 # Established Source System, v1.0
 
-This project is provided for portfolio review only. No permission is granted for reuse, modification, or redistribution.
+This project is provided for portfolio review only.  
+No permission is granted for reuse, modification, or redistribution.
 
 Overview
 
@@ -8,10 +9,10 @@ The Established Source System is a cross‑platform utility for generating a com
 
 The system includes:
 
-- Linux/Debian version with advanced document extraction
+- Debian version with advanced document extraction
 - Windows version with relative‑path normalization
 - Purification tools for correcting path inconsistencies
-- Restoration tools for rebuilding a project from a manifest
+- Platform‑specific restoration tools
 - Site‑map generators for quick directory indexing
 
 This project demonstrates:
@@ -75,18 +76,24 @@ This ensures the manifest is safe for restoration on the intended platform.
 
 ---
 
-4. Restorer (restore-es-uni.py)
-Reconstructs a project directory from a manifest.
+4. Restorers (restore-es-deb.py and restore-es-win.py)
+The restoration process is platform‑specific.
 
-The restorer:
+Each OS has its own restorer:
 
-- reads the manifest line‑by‑line
-- detects file boundaries
-- recreates directories
-- writes file contents exactly as recorded
-- skips binary placeholders
+- Debian/Linux: restore-es-deb.py
+- Windows: restore-es-win.py
 
-This allows deterministic restoration of text‑based projects.
+Both restorers:
+
+- read the manifest line‑by‑line
+- detect file boundaries
+- recreate directories
+- write file contents exactly as recorded
+- skip binary placeholders
+- restore only text‑based artifacts
+
+This ensures correct path handling and consistent reconstruction on each platform.
 
 ---
 
@@ -98,13 +105,13 @@ Established-Source-System/
 │   ├── gen-es-deb.py
 │   ├── gen-sm-deb.py
 │   ├── purify-es-deb.py
-│   └── restore-es-uni.py
+│   └── restore-es-deb.py
 │
 ├── Win11/
 │   ├── gen-es-win.py
 │   ├── gen-sm-win.py
 │   ├── purify-es-win.py
-│   └── restore-es-uni.py
+│   └── restore-es-win.py
 │
 └── README.md
 `
@@ -114,12 +121,13 @@ Established-Source-System/
 Usage
 
 Generate a Manifest
-Linux:
+
+Debian/Linux
 `
 python3 gen-es-deb.py
 `
 
-Windows:
+Windows
 `
 python gen-es-win.py
 `
@@ -133,12 +141,13 @@ established-source.txt
 ---
 
 Generate a Site Map
-Linux:
+
+Debian/Linux
 `
 python3 gen-sm-deb.py
 `
 
-Windows:
+Windows
 `
 python gen-sm-win.py
 `
@@ -146,12 +155,13 @@ python gen-sm-win.py
 ---
 
 Purify a Manifest
-Linux:
+
+Debian/Linux
 `
 python3 purify-es-deb.py
 `
 
-Windows:
+Windows
 `
 python purify-es-win.py
 `
@@ -165,13 +175,24 @@ PURIFIED-established-source.txt
 ---
 
 Restore a Project
-Place the manifest in an empty directory and run:
 
+Place the manifest in an empty directory and run the appropriate restorer.
+
+Debian/Linux
 `
-python restore-es-uni.py
+python3 restore-es-deb.py
 `
 
-The script reconstructs all text‑based files.
+Windows
+`
+python restore-es-win.py
+`
+
+Both scripts will:
+
+- recreate directories
+- restore all text files
+- report each restored artifact
 
 ---
 
