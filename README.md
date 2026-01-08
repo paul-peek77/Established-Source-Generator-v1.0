@@ -96,27 +96,6 @@ This ensures correct path handling and consistent reconstruction on each platfor
 
 ---
 
-Directory Structure
-`
-Established-Source-System/
-│
-├── Deb13/
-│   ├── gen-es-deb.py
-│   ├── gen-sm-deb.py
-│   ├── purify-es-deb.py
-│   └── restore-es-deb.py
-│
-├── Win11/
-│   ├── gen-es-win.py
-│   ├── gen-sm-win.py
-│   ├── purify-es-win.py
-│   └── restore-es-win.py
-│
-└── README.md
-`
-
----
-
 Usage
 
 Generate a Manifest
