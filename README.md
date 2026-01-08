@@ -1,4 +1,4 @@
-Established Source Generator, v1.0
+# Established Source Generator, v1.0
 
 This project is provided for portfolio review only. No permission is granted for reuse, modification, or redistribution.
 
